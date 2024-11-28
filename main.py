@@ -1,51 +1,16 @@
-from PyQt6.QtWidgets import QApplication, QDialog, QLabel
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt6.QtGui import QPainter, QColor
 import io
 from PyQt6 import uic
+from ui_file import Ui_Dialog
 import sys
 from random import randrange
 
 
-template = '''<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1120</width>
-    <height>493</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
-  </property>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>210</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Заспавни
-круг</string>
-   </property>
-  </widget>
- </widget>
- <resources/>
- <connections/>
-</ui>
-'''
-
-class second(QDialog):
+class second(QMainWindow, Ui_Dialog):
     def __init__(self):
         super().__init__()
-        f = io.StringIO(template)
-        uic.loadUi(f, self)
+        self.setupUi(self)
         self.A = QLabel(self)
         self.do_paint = False
         self.A.move(200, 0)
@@ -68,7 +33,10 @@ class second(QDialog):
         f1 = randrange(0, 200)
         f2 = randrange(0, 100)
 
-        qp.setBrush(QColor(255, 255, 0))
+        r = randrange(0, 255)
+        g = randrange(0, 255)
+        b = randrange(0, 255)
+        qp.setBrush(QColor(r, g, b))
         qp.drawEllipse(f, f1, f2, f2)
 
 
